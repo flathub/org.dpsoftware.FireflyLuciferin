@@ -50,9 +50,9 @@
       ],
       "sources": [
         {
-          "type" : "file",
-          "url" : "https://dpsoftware.org/2.17.9/FireflyLuciferinLinux.deb",
-          "sha256" : "d4f2f23c1d2d04ba33781372f48ec3edb5e6a82dd893c8e4bea9759cb6807747"
+          "type": "file",
+          "url": "https://dpsoftware.org/2.17.10/FireflyLuciferinLinux.deb",
+          "sha256": "b5bcb3c69806a9c8ea9174234436bb2c54b55efe816d4f2eb62f01e57112b2de"
         }
       ]
     }
