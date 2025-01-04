@@ -10,7 +10,6 @@
     "--socket=pulseaudio",
     "--socket=x11",
     "--device=all",
-    "--filesystem=xdg-documents",
     "--talk-name=org.kde.StatusNotifierWatcher"
   ],
   "modules": [
@@ -53,8 +52,8 @@
       "sources": [
         {
           "type": "file",
-          "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.18.9/FireflyLuciferinLinux.deb",
-          "sha256": "76f404fa05bd40137b4657dbc8aa441da053d962b80de4cd19d84914e0f06350"
+          "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.19.3/FireflyLuciferinLinux.deb",
+          "sha256": "1fa3b38f3eafb93ff4f56892195003cfaa77e67926773187e4077c5f7add3544"
         }
       ]
     }
