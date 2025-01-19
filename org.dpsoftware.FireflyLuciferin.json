@@ -52,8 +52,8 @@
       "sources": [
         {
           "type": "file",
-          "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.19.3/FireflyLuciferinLinux.deb",
-          "sha256": "1fa3b38f3eafb93ff4f56892195003cfaa77e67926773187e4077c5f7add3544"
+          "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.20.5/FireflyLuciferinLinux.deb",
+          "sha256": "3015a029e2ed896241f0c694f985b235550ee582b6c9a5e111d3e7f626762fdb"
         }
       ]
     }
