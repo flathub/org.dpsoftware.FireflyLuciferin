@@ -10,7 +10,9 @@
     "--socket=pulseaudio",
     "--socket=x11",
     "--device=all",
-    "--talk-name=org.kde.StatusNotifierWatcher"
+    "--talk-name=org.kde.StatusNotifierWatcher",
+    "--talk-name=org.gnome.SettingsDaemon.Color",
+    "--talk-name=org.kde.KWin.NightLight"
   ],
   "modules": [
     "shared-modules/libayatana-appindicator/libayatana-appindicator-gtk3.json",
@@ -52,8 +54,8 @@
       "sources": [
         {
           "type": "file",
-          "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.21.3/FireflyLuciferinLinux.deb",
-          "sha256": "543a4cac986a23e4e99dff1869b8a4b4a48f357f97222ca66c00dfe0a41138c4"
+          "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.22.7/FireflyLuciferinLinux.deb",
+          "sha256": ""
         }
       ]
     }
