@@ -1,7 +1,7 @@
 {
   "id": "org.dpsoftware.FireflyLuciferin",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "25.08",
+  "runtime-version": "26.08",
   "sdk": "org.freedesktop.Sdk",
   "command": "FireflyLuciferin",
   "finish-args": [
@@ -67,7 +67,7 @@
             "aarch64"
           ],
           "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.28.4/FireflyLuciferinLinux_arm64.deb",
-          "sha256": "c8320a2db5c810895a965fd83715642cbd6d6d9d6ba59e49d89d0ed71acb4ff8",
+          "sha256": "002edf89920f833f21fbbc8f3ffe4eda97280a814a1f15020652c8e3a59225ab",
           "dest-filename": "FireflyLuciferinLinux.deb"
         }
       ]
