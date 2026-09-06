@@ -68,7 +68,7 @@
             "aarch64"
           ],
           "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.28.4/FireflyLuciferinLinux_arm64.deb",
-          "sha256": "002edf89920f833f21fbbc8f3ffe4eda97280a814a1f15020652c8e3a59225ab",
+          "sha256": "a3708c71bd02ec701fc3c4d0c0359c91c22698dac2e851add776c8c250dde95b",
           "dest-filename": "FireflyLuciferinLinux.deb"
         }
       ]
