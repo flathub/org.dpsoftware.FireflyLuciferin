@@ -1,7 +1,7 @@
 {
   "id": "org.dpsoftware.FireflyLuciferin",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "25.08",
+  "runtime-version": "26.08",
   "sdk": "org.freedesktop.Sdk",
   "command": "FireflyLuciferin",
   "finish-args": [
@@ -9,6 +9,7 @@
     "--share=ipc",
     "--socket=pulseaudio",
     "--socket=x11",
+    "--socket=wayland",
     "--device=all",
     "--talk-name=org.kde.StatusNotifierWatcher",
     "--talk-name=org.gnome.SettingsDaemon.Color",
@@ -31,8 +32,8 @@
           "only-arches": [
             "x86_64"
           ],
-          "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvrtc/linux-x86_64/cuda_nvrtc-linux-x86_64-12.6.85-archive.tar.xz",
-          "sha256": "a4289ba86f0deeccf4e1d94c58559eae4c8184fcb6eaade8fcab45584e6cf402"
+          "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvrtc/linux-x86_64/cuda_nvrtc-linux-x86_64-13.3.33-archive.tar.xz",
+          "sha256": "9e8f78278215babd1236b137252424ca7912c185bd093201f5d97f7dd763b74a"
         }
       ]
     },
@@ -54,8 +55,21 @@
       "sources": [
         {
           "type": "file",
-          "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.28.4/FireflyLuciferinLinux.deb",
-          "sha256": "b8f2ccfd9be7964baddad3f4169da07728ec252755aef508c79e69ae9a227f88"
+          "only-arches": [
+            "x86_64"
+          ],
+          "url": "https://dpsoftware.org/host/FireflyLuciferinLinux.deb",
+          "sha256": "9a5f38f15fedad95e4e6de572feb6bfeb38a669a87631a74def2ca953ecbc8e2",
+          "dest-filename": "FireflyLuciferinLinux.deb"
+        },
+        {
+          "type": "file",
+          "only-arches": [
+            "aarch64"
+          ],
+          "url": "https://dpsoftware.org/host/FireflyLuciferinLinux_arm64.deb",
+          "sha256": "bc30a0e908d95c36c6ac9a8ef112213fce3a159fcb2c5bc349b218d2575c0973",
+          "dest-filename": "FireflyLuciferinLinux.deb"
         }
       ]
     }
