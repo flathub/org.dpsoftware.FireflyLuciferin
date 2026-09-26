@@ -10,6 +10,7 @@
     "--socket=pulseaudio",
     "--socket=x11",
     "--device=all",
+    "--filesystem=/run/udev:ro",
     "--talk-name=org.kde.StatusNotifierWatcher",
     "--talk-name=org.gnome.SettingsDaemon.Color",
     "--talk-name=org.kde.KWin.NightLight"
