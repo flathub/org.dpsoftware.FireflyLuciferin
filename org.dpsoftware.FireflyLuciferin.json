@@ -11,6 +11,7 @@
     "--socket=x11",
     "--socket=wayland",
     "--device=all",
+    "--filesystem=/run/udev:ro",
     "--talk-name=org.kde.StatusNotifierWatcher",
     "--talk-name=org.gnome.SettingsDaemon.Color",
     "--talk-name=org.kde.KWin.NightLight"
@@ -59,7 +60,7 @@
             "x86_64"
           ],
           "url": "https://dpsoftware.org/host/FireflyLuciferinLinux.deb",
-          "sha256": "94823f567c17a74d8bfb5c5693d69241870e7a72b2cffaab9ed103069362f593",
+          "sha256": "3477d23e82a7d0f188e43623358c4e7b4cb1f5c7a7947d1ef435df9be92cfa53",
           "dest-filename": "FireflyLuciferinLinux.deb"
         },
         {
@@ -68,7 +69,7 @@
             "aarch64"
           ],
           "url": "https://dpsoftware.org/host/FireflyLuciferinLinux_arm64.deb",
-          "sha256": "6e3995f1b2331ce93bf36208ee6cb174c1441f67687a5e0d0456de34567bb3e4",
+          "sha256": "f5fd431ad1c5490368fcece6290ae1ed9461cb330c6fa973c168a6bbd0afd71b",
           "dest-filename": "FireflyLuciferinLinux.deb"
         }
       ]
