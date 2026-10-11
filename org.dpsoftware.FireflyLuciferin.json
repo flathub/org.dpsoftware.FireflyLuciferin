@@ -9,6 +9,7 @@
     "--share=ipc",
     "--socket=pulseaudio",
     "--socket=x11",
+    "--socket=wayland",
     "--device=all",
     "--filesystem=/run/udev:ro",
     "--talk-name=org.kde.StatusNotifierWatcher",
