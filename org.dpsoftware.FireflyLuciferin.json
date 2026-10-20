@@ -60,7 +60,7 @@
             "x86_64"
           ],
           "url": "https://dpsoftware.org/host/FireflyLuciferinLinux.deb",
-          "sha256": "685a452abb15abd161ba8f72b64c916b3df884a3b51d21ff23b2800c55899c64",
+          "sha256": "65c588d5be5ebd3ba671b5da1e02e5d67345a24d84f7633cfb74703cefd4b1f8",
           "dest-filename": "FireflyLuciferinLinux.deb"
         },
         {
@@ -69,7 +69,7 @@
             "aarch64"
           ],
           "url": "https://dpsoftware.org/host/FireflyLuciferinLinux_arm64.deb",
-          "sha256": "1a92fb92792ba6513b61768254e87e211c50c0470ba23887d04cc08138f0170e",
+          "sha256": "d1f61e8cb05f71b5c242d10049458bc00482a0de528dac87b8450d2cf05e9351",
           "dest-filename": "FireflyLuciferinLinux.deb"
         }
       ]
