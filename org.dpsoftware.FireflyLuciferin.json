@@ -12,6 +12,7 @@
     "--socket=wayland",
     "--device=all",
     "--filesystem=/run/udev:ro",
+    "--filesystem=~/.config/systemd/user:create",
     "--talk-name=org.kde.StatusNotifierWatcher",
     "--talk-name=org.gnome.SettingsDaemon.Color",
     "--talk-name=org.kde.KWin.NightLight"
