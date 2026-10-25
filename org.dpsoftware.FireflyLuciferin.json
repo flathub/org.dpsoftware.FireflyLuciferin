@@ -1,7 +1,7 @@
 {
   "id": "org.dpsoftware.FireflyLuciferin",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "25.08",
+  "runtime-version": "26.08",
   "sdk": "org.freedesktop.Sdk",
   "command": "FireflyLuciferin",
   "finish-args": [
@@ -12,6 +12,7 @@
     "--socket=wayland",
     "--device=all",
     "--filesystem=/run/udev:ro",
+    "--filesystem=~/.config/systemd/user:create",
     "--talk-name=org.kde.StatusNotifierWatcher",
     "--talk-name=org.gnome.SettingsDaemon.Color",
     "--talk-name=org.kde.KWin.NightLight"
@@ -33,8 +34,8 @@
           "only-arches": [
             "x86_64"
           ],
-          "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvrtc/linux-x86_64/cuda_nvrtc-linux-x86_64-12.6.85-archive.tar.xz",
-          "sha256": "a4289ba86f0deeccf4e1d94c58559eae4c8184fcb6eaade8fcab45584e6cf402"
+          "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvrtc/linux-x86_64/cuda_nvrtc-linux-x86_64-13.3.33-archive.tar.xz",
+          "sha256": "9e8f78278215babd1236b137252424ca7912c185bd093201f5d97f7dd763b74a"
         }
       ]
     },
@@ -56,8 +57,21 @@
       "sources": [
         {
           "type": "file",
-          "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.28.4/FireflyLuciferinLinux.deb",
-          "sha256": "b8f2ccfd9be7964baddad3f4169da07728ec252755aef508c79e69ae9a227f88"
+          "only-arches": [
+            "x86_64"
+          ],
+          "url": "https://dpsoftware.org/host/FireflyLuciferinLinux.deb",
+          "sha256": "770da38133b710025b90a978ccd2275d38393f1dfcd79b7d6b492c8dbec19872",
+          "dest-filename": "FireflyLuciferinLinux.deb"
+        },
+        {
+          "type": "file",
+          "only-arches": [
+            "aarch64"
+          ],
+          "url": "https://dpsoftware.org/host/FireflyLuciferinLinux_arm64.deb",
+          "sha256": "af9907bdb1d6e2a6da2c4311cf7ecc76bfc9f6f39bf435564400b9528251f7f9",
+          "dest-filename": "FireflyLuciferinLinux.deb"
         }
       ]
     }
