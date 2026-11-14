@@ -1,9 +1,9 @@
 {
   "id": "org.dpsoftware.FireflyLuciferin",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "25.08",
+  "runtime-version": "26.08",
   "sdk": "org.freedesktop.Sdk",
-  "command": "FireflyLuciferin",
+  "command": "firefly-luciferin",
   "finish-args": [
     "--share=network",
     "--share=ipc",
@@ -12,6 +12,7 @@
     "--socket=wayland",
     "--device=all",
     "--filesystem=/run/udev:ro",
+    "--filesystem=~/.config/systemd/user:create",
     "--talk-name=org.kde.StatusNotifierWatcher",
     "--talk-name=org.gnome.SettingsDaemon.Color",
     "--talk-name=org.kde.KWin.NightLight"
@@ -25,7 +26,10 @@
       ],
       "buildsystem": "simple",
       "build-commands": [
-        "mv lib/libnvrtc*.so* /app/lib/"
+        "mkdir -p /app/lib",
+        "mv lib/libnvrtc*.so* /app/lib/",
+        "cp -a cuda-cudart/lib/libcudart.so* /app/lib/",
+        "install -Dm644 cuda-cudart/LICENSE /app/share/licenses/cuda-cudart/LICENSE"
       ],
       "sources": [
         {
@@ -33,8 +37,87 @@
           "only-arches": [
             "x86_64"
           ],
-          "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvrtc/linux-x86_64/cuda_nvrtc-linux-x86_64-12.6.85-archive.tar.xz",
-          "sha256": "a4289ba86f0deeccf4e1d94c58559eae4c8184fcb6eaade8fcab45584e6cf402"
+          "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvrtc/linux-x86_64/cuda_nvrtc-linux-x86_64-13.3.33-archive.tar.xz",
+          "sha256": "9e8f78278215babd1236b137252424ca7912c185bd093201f5d97f7dd763b74a"
+        },
+        {
+          "type": "archive",
+          "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/linux-x86_64/cuda_cudart-linux-x86_64-13.3.29-archive.tar.xz",
+          "sha256": "1e59c4888267d27ba1a9bd0f3669a6439db1334a96e754cd9013c7c73e18dc9d",
+          "dest": "cuda-cudart"
+        }
+      ]
+    },
+    {
+      "name": "rocm-hip-runtime",
+      "only-arches": [
+        "x86_64"
+      ],
+      "buildsystem": "simple",
+      "build-commands": [
+        "for package in rocm-core hip-runtime-amd hsa-rocr comgr rocprofiler-register; do ar p \"$package.deb\" data.tar.gz | tar xz; done",
+        "mkdir -p /app/lib /app/share/licenses/rocm-hip-runtime",
+        "cp -a opt/rocm-7.2.4/lib/*.so* /app/lib/",
+        "cp -a opt/rocm-7.2.4/share/doc/. /app/share/licenses/rocm-hip-runtime/"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "url": "https://repo.radeon.com/rocm/apt/7.2.4/pool/main/r/rocm-core/rocm-core_7.2.4.70204-93~24.04_amd64.deb",
+          "sha256": "dfe0d173da998a669921faf08351a01add377cd4d1b471865f921a03484974b6",
+          "dest-filename": "rocm-core.deb"
+        },
+        {
+          "type": "file",
+          "url": "https://repo.radeon.com/rocm/apt/7.2.4/pool/main/h/hip-runtime-amd/hip-runtime-amd_7.2.53211.70204-93~24.04_amd64.deb",
+          "sha256": "70961d0f79708148a54f23bdde2ebab5c389d5ab4373170d8df94f3e54d87a0b",
+          "dest-filename": "hip-runtime-amd.deb"
+        },
+        {
+          "type": "file",
+          "url": "https://repo.radeon.com/rocm/apt/7.2.4/pool/main/h/hsa-rocr/hsa-rocr_1.18.0.70204-93~24.04_amd64.deb",
+          "sha256": "6af02a99d15efbf21ba0e20a333aac32e2d712aa4b325dd0617842f4cde64ab4",
+          "dest-filename": "hsa-rocr.deb"
+        },
+        {
+          "type": "file",
+          "url": "https://repo.radeon.com/rocm/apt/7.2.4/pool/main/c/comgr/comgr_3.0.0.70204-93~24.04_amd64.deb",
+          "sha256": "02951341120d23ebf34b066a84ab172e4813cba4a601f910545c6658989bee87",
+          "dest-filename": "comgr.deb"
+        },
+        {
+          "type": "file",
+          "url": "https://repo.radeon.com/rocm/apt/7.2.4/pool/main/r/rocprofiler-register/rocprofiler-register_0.6.0.70204-93~24.04_amd64.deb",
+          "sha256": "3b13874e567fa40b6eaf9f8d572d5c9a4ac780eb37496b31565755463a378295",
+          "dest-filename": "rocprofiler-register.deb"
+        }
+      ],
+      "modules": [
+        {
+          "name": "numactl",
+          "only-arches": [
+            "x86_64"
+          ],
+          "config-opts": [
+            "--disable-static"
+          ],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://github.com/numactl/numactl/releases/download/v2.0.19/numactl-2.0.19.tar.gz",
+              "sha256": "f2672a0381cb59196e9c246bf8bcc43d5568bc457700a697f1a1df762b9af884"
+            }
+          ],
+          "post-install": [
+            "install -Dm644 LICENSE.LGPL2.1 /app/share/licenses/numactl/LICENSE.LGPL2.1"
+          ],
+          "cleanup": [
+            "/bin",
+            "/include",
+            "/share/man",
+            "/lib/pkgconfig",
+            "/lib/*.la"
+          ]
         }
       ]
     },
@@ -47,7 +130,9 @@
         "mkdir -p /app/fireflyluciferin",
         "echo -e '\nflatpak.env=true' >> opt/fireflyluciferin/lib/app/classes/project.properties",
         "cp -r opt/fireflyluciferin/* /app/",
+        "install -Dm755 firefly-luciferin /app/bin/firefly-luciferin",
         "install -Dm644 ./opt/fireflyluciferin/lib/app/classes/build_assets/org.dpsoftware.FireflyLuciferin.desktop /app/share/applications/${FLATPAK_ID}.desktop",
+        "desktop-file-edit --set-key=Exec --set-value=firefly-luciferin /app/share/applications/${FLATPAK_ID}.desktop",
         "install -Dm644 ./opt/fireflyluciferin/lib/app/classes/build_assets/org.dpsoftware.FireflyLuciferin.appdata.xml /app/share/appdata/${FLATPAK_ID}.appdata.xml",
         "install -Dm644 ./opt/fireflyluciferin/lib/app/classes/build_assets/org.dpsoftware.FireflyLuciferin.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg",
         "for f in ./opt/fireflyluciferin/lib/app/classes/org/dpsoftware/gui/img/*.png; do install -Dm644 \"$f\" \"/app/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.$(basename \"$f\")\"; done",
@@ -56,8 +141,30 @@
       "sources": [
         {
           "type": "file",
-          "url": "https://github.com/sblantipodi/firefly_luciferin/releases/download/v2.28.4/FireflyLuciferinLinux.deb",
-          "sha256": "b8f2ccfd9be7964baddad3f4169da07728ec252755aef508c79e69ae9a227f88"
+          "only-arches": [
+            "x86_64"
+          ],
+          "url": "https://dpsoftware.org/host/FireflyLuciferinLinux.deb",
+          "sha256": "6b206a7516c047f71f8876823df7ef0ba5dd22d849fb57586026640438dc9b3f",
+          "dest-filename": "FireflyLuciferinLinux.deb"
+        },
+        {
+          "type": "file",
+          "only-arches": [
+            "aarch64"
+          ],
+          "url": "https://dpsoftware.org/host/FireflyLuciferinLinux_arm64.deb",
+          "sha256": "09ceed75de1315193132a92c5b90847c04e603196e7971d796b638247f65f70d",
+          "dest-filename": "FireflyLuciferinLinux.deb"
+        },
+        {
+          "type": "script",
+          "dest-filename": "firefly-luciferin",
+          "commands": [
+            "# Use a fresh registry when GPU runtimes change; the HIP plugin does not track these dependencies.",
+            "export GST_REGISTRY=\"${GST_REGISTRY:-${XDG_CACHE_HOME:-$HOME/.cache}/gstreamer-1.0/registry-hip-rocm7.2.4-cuda13.3.bin}\"",
+            "exec /app/bin/FireflyLuciferin \"$@\""
+          ]
         }
       ]
     }
